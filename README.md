@@ -1,2 +1,38 @@
-# obs-position-sources-script
-This is the python script I use to make it easier to position sources in OBS scenes by doing it programatically 
+# OBS Position Sources Script
+
+## Overview
+
+This is the python script I use to make it
+easier to position sources in OBS scenes
+by doing it programmatically.
+
+## Goals
+
+- YAML file for configuration
+- Configure all scenes and sources from
+  a single file
+- Adjust position, sizing, and crops
+
+## Python Install
+
+Python needs to be installed. Then,
+for my Windows machine I went to:
+
+```
+OBS -> Tools -> Scripts -> Python Settings
+```
+
+From there, I browsed for the folder that holds
+Python. For me, that was:
+
+```
+C:/Users/alan/AppData/Local/Programs/Python/Pypthon36
+```
+
+One video I saw said you have to use Python 3.6. I
+already had that so it's just what I used. I can't
+speak to if there are problems with other versions.
+
+## Loading The Script
+
+TKTKTK
