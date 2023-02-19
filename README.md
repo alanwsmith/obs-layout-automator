@@ -35,4 +35,12 @@ speak to if there are problems with other versions.
 
 ## Loading The Script
 
-TKTKTK
+TKTKTK - TONOTE: As soon as you load the script the interface
+shows up.
+
+## References
+
+- Credit to [this cheatsheet](https://github.com/Jwolter0/OBS-Studio-Python-Scripting-Cheatsheet-obspython-Examples-of-API)
+  for getting me started in general
+- And [this script](https://github.com/Jwolter0/OBS-Studio-Python-Scripting-Cheatsheet-obspython-Examples-of-API/blob/master/src/move_source_.py)
+  specifically
