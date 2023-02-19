@@ -1,15 +1,24 @@
+# import obspython as S
+
+
 import obspython as obs
+import os.path
+import toml
+
+# config_path = os.path.join("d:", "obs-position-sources-script", "config.yaml")
 
 def position_sources(props, prop):
-    source_name = "Test Source"
+    # with open(config_path) as _config:
+    #     sources 
+    source_name = "Color Source"
     current_scene = obs.obs_frontend_get_current_scene()
     scene = obs.obs_scene_from_source(current_scene)
     source = obs.obs_get_source_by_name(source_name)
     scene_item = obs.obs_scene_find_source(scene, source_name)
     if scene_item:
         pos = obs.vec2()
-        pos.x = 50
-        pos.y = 50
+        pos.x = 100
+        pos.y = 400 
         obs.obs_sceneitem_set_pos(scene_item, pos)
     obs.obs_scene_release(scene)
     obs.obs_source_release(source)
@@ -87,6 +96,27 @@ def script_properties():
 #     obs.obs_properties_add_button(props, "button", "Add text source", add_pressed)
 #     obs.obs_properties_add_button(
 #         props, "button2", "Move source +10 pixels", move_pressed
+#     )
+#     return props
+
+# def script_properties():  # ui
+#     props = S.obs_properties_create()
+#     p = S.obs_properties_add_list(
+#         props,
+#         "source",
+#         "Select source",
+#         S.OBS_COMBO_TYPE_EDITABLE,
+#         S.OBS_COMBO_FORMAT_STRING,
+#     )
+#     sources = S.obs_enum_sources()
+#     if sources is not None:
+#         for source in sources:
+#             source_id = S.obs_source_get_unversioned_id(source)
+#             name = S.obs_source_get_name(source)
+#             S.obs_property_list_add_string(p, name, name)
+#         S.source_list_release(sources)
+#     S.obs_properties_add_button(
+#         props, "button", "Print source settings and filter names", button_pressed
 #     )
 #     return props
 
