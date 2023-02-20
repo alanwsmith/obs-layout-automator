@@ -45,11 +45,16 @@ class SceneItem():
 
         self.set_width()
         self.crop_left()
+        self.set_position()
 
-        print("Updates Complete")
+        print(self.params)
+
+        print("Updates Complete - ")
 
     def do_calculations(self):
-        self.params['width'] = self.params['width'] + self.params['crop_left'] + self.params['crop_right']
+        # self.params['width'] = self.params['width'] + self.params['crop_left']  + self.params['crop_right']
+        width_multiplier = self.params['width']  / (self.params['width'] - self.params['crop_left'] - self.params['crop_right'])
+        self.params['width'] = self.params['width'] * width_multiplier
         print("Doing calculations")
         pass
 
@@ -58,6 +63,7 @@ class SceneItem():
 
     def set_width(self):
         scale_value = self.params['width'] / self.width() 
+        print(self.width())
         scale = obs.vec2()
         scale.x = scale_value
         scale.y = scale_value
@@ -85,18 +91,18 @@ class SceneItem():
     def rotate(self, value):
         obs.obs_sceneitem_set_rot(self.item, value)
 
-    def set_position(self, x, y):
+    def set_position(self):
         pos = obs.vec2()
-        pos.x = x
-        pos.y = y
+        pos.x = self.params['position_x']
+        pos.y = self.params['position_y']
         obs.obs_sceneitem_set_pos(self.item, pos)
 
 
 def update_source_positions(props, prop):
     si = SceneItem(name="Video Capture Device")
     si.update(
-        width=1000,
-        crop_left=0
+        width=1920,
+        crop_left=500
     )
     si.cleanup()
 
