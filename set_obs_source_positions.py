@@ -1,5 +1,3 @@
-# import obspython as S
-
 import obspython as obs
 import os.path
 import yaml 
@@ -8,24 +6,65 @@ from pprint import pprint
 
 config_path = os.path.join("d:", "obs-position-sources-script", "config.yaml")
 
-def position_sources(props, prop):
+class SceneItem():
+    def __init__(self, name):
+        self.name = name 
+        self.prep()
+    
+    def cleanup(self):
+        obs.obs_scene_release(self.scene_obj)
+        obs.obs_source_release(self.source)
 
-    with open(config_path, "rb") as _config:
-        config = yaml.safe_load(_config)
+    def prep(self):
+        # TODO: Throw an error if the thing doesn't exist
+        self.source = obs.obs_get_source_by_name(self.name)
+        self.scene_ref = obs.obs_frontend_get_current_scene()
+        self.scene_obj = obs.obs_scene_from_source(self.scene_ref)
+        self.item = obs.obs_scene_find_source(self.scene_obj, self.name)
+        self.crop = obs.obs_sceneitem_crop()
+        self.info = obs.obs_transform_info()
+        obs.obs_sceneitem_get_crop(self.item, self.crop)
+        obs.obs_sceneitem_get_info(self.item, self.info)
 
-    for settings in config["scenes"]:
-        source_name = settings["name"]
-        current_scene = obs.obs_frontend_get_current_scene()
-        scene = obs.obs_scene_from_source(current_scene)
-        source = obs.obs_get_source_by_name(source_name)
-        scene_item = obs.obs_scene_find_source(scene, source_name)
-        if scene_item:
-            pos = obs.vec2()
-            pos.x = settings["px"]
-            pos.y = settings["py"] 
-            obs.obs_sceneitem_set_pos(scene_item, pos)
-        obs.obs_scene_release(scene)
-        obs.obs_source_release(source)
+    def width(self):
+        return obs.obs_source_get_width(self.source)
+
+    def set_width(self, value):
+        scale_value = value / self.width() 
+        scale = obs.vec2()
+        scale.x = scale_value
+        scale.y = scale_value
+        obs.obs_sceneitem_set_scale(self.item, scale)
+
+    def apply_crop(self):
+        obs.obs_sceneitem_set_crop(self.item, self.crop)
+
+    def crop_left(self, value):
+        self.crop.left = value
+        self.apply_crop()
+
+    def crop_right(self, value):
+        self.crop.right = value
+        self.apply_crop()
+
+    def crop_top(self, value):
+        self.crop.top = value
+        self.apply_crop()
+
+    def crop_bottom(self, value):
+        self.crop.bottom = value
+        self.apply_crop()
+
+    def rotate(self, value):
+        obs.obs_sceneitem_set_rot(self.item, value)
+
+def update_source_positions(props, prop):
+    si = SceneItem(name="Video Capture Device")
+    si.rotate(90)
+    si.set_width(900)
+    si.crop_left(0)
+    si.cleanup()
+
 
 def script_description():
     return "Position Sources In Scenes"
@@ -33,10 +72,63 @@ def script_description():
 def script_properties():
     props = obs.obs_properties_create()
     obs.obs_properties_add_button(
-        props, "button", "Position Sources", position_sources 
+        props, "button", "Update Source Positions", update_source_positions 
     )
     return props
 
+
+
+
+
+
+# class Source(): 
+#     def __init__(self):
+#         self.name = None
+#     def source(self):
+#         return obs.obs_get_source_by_name(self.name)
+#     def width(self):
+#         return obs.obs_source_get_width(self.source())
+#     def height(self):
+#         return obs.obs_source_get_height(self.source())
+
+
+
+#def position_sources(props, prop):
+#    with open(config_path, "rb") as _config:
+#        config = yaml.safe_load(_config)
+#    current_scene = obs.obs_frontend_get_current_scene()
+#    scene = obs.obs_scene_from_source(current_scene)
+#    for settings in config["scenes"]:
+#        s = Source()
+#        s.name = settings["name"]
+#        print(s.width())
+#        print(s.height())
+#        # print(s.source())
+#        # print("Getting Info")
+#        # source_name = settings["name"]
+#        # source = obs.obs_get_source_by_name(source_name)
+#        # source_width = obs.obs_source_get_width(source)
+#        # source_height = obs.obs_source_get_height(source)
+#        # print(source_width)
+#        #scene_item = obs.obs_scene_find_source(scene, "Video Capture Device")
+
+
+    
+
+    #     current_scene = obs.obs_frontend_get_current_scene()
+    #     scene = obs.obs_scene_from_source(current_scene)
+    #     source = obs.obs_get_source_by_name(source_name)
+    #     scene_item = obs.obs_scene_find_source(scene, source_name)
+    #     if scene_item:
+    #         pos = obs.vec2()
+    #         pos.x = settings["px"]
+    #         pos.y = settings["py"] 
+    #         pprint(obs.obs_sceneitem_get_info())
+    #         # pprint(scene_item.obs_transform_info.pos)
+    #         # obs.obs_get_source_properties
+    #         # obs.obs_sceneitem_set_pos(scene_item, pos)
+    #     obs.obs_scene_release(scene)
+    #     obs.obs_source_release(source)
 
 
 
