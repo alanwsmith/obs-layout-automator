@@ -4,6 +4,11 @@ import sys
 import unittest
 from io import StringIO
 
+## NOTE: THIS MATH STILL NEEDS WORK
+## BUT THAT WORK IS BEIGN DONE IN 
+## THE OTHER FILE TO MAKE IT EASIER
+## TO SEE
+
 class MyClass():
     def is_true(self):
         return True
