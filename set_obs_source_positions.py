@@ -41,11 +41,17 @@ class SceneItem():
         for key in kwargs.keys():
             self.params[key] = kwargs[key]
 
+        self.do_calculations()
+
         self.set_width()
+        self.crop_left()
 
         print("Updates Complete")
 
-
+    def do_calculations(self):
+        self.params['width'] = self.params['width'] + self.params['crop_left'] + self.params['crop_right']
+        print("Doing calculations")
+        pass
 
     def width(self):
         return obs.obs_source_get_width(self.source)
@@ -60,8 +66,8 @@ class SceneItem():
     def apply_crop(self):
         obs.obs_sceneitem_set_crop(self.item, self.crop)
 
-    def crop_left(self, value):
-        self.crop.left = value
+    def crop_left(self):
+        self.crop.left = self.params['crop_left'] 
         self.apply_crop()
 
     def crop_right(self, value):
@@ -90,7 +96,7 @@ def update_source_positions(props, prop):
     si = SceneItem(name="Video Capture Device")
     si.update(
         width=1000,
-        crop_left=500
+        crop_left=0
     )
     si.cleanup()
 
