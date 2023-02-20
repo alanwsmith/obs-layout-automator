@@ -2,7 +2,7 @@ import obspython as obs
 import os.path
 import yaml 
 
-from pprint import pprint
+# from pprint import pprint
 
 config_path = os.path.join("d:", "obs-position-sources-script", "config.yaml")
 
@@ -14,6 +14,86 @@ class SceneItem():
     def cleanup(self):
         obs.obs_scene_release(self.scene_obj)
         obs.obs_source_release(self.source)
+
+    def scale(self):
+        total_width_crop = self.params['crop_left'] + self.params['crop_right']
+        width_plus_crop = self.params['width'] + total_width_crop
+        width_minus_crop = self.params['width'] - total_width_crop
+        width_base = self.params['width']
+
+        # print(total_width_crop / width_plus_crop)
+        # print(total_width_crop / width_minus_crop)
+        # print(width_plus_crop / total_width_crop)
+        # print(width_minus_crop / total_width_crop)
+
+        # print(width_minus_crop / width_plus_crop)
+        # print(width_plus_crop / width_minus_crop)
+
+        r1 = self.width() - total_width_crop
+        r2 = self.params['width'] / r1
+        # print(r1)
+        # print(r2)
+        scale = r2
+
+
+
+
+        # step1 = self.params['width'] + self.params['crop_left'] + self.params['crop_right']
+        # # print(step1)
+        # step2 = step1 / self.width()  
+        # # print(step2)
+
+        # z1 = self.width() / step1
+        # # print(f"z1 {z1}")
+
+
+        # w1 = self.params['width'] / total_width_crop
+        # w2 = total_width_crop / self.params['width']
+        # w3 = total_width_crop / (self.params['width'] + total_width_crop)
+        # w4 = (self.params['width'] + total_width_crop) / total_width_crop
+        # w5 = self.params['width'] / (total_width_crop + self.params['width'])
+
+        # print(f"w1 {w1}")
+        # print(f"w2 {w2}")
+        # print(f"w3 {w3}")
+        # print(f"w4 {w4}")
+        # print(f"w5 {w5}")
+
+
+
+        # x_1 = self.height() / step1
+        # print(x_1)
+        # x_2 = x_1 + self.params['width']
+        # print(x_2)
+
+
+        # step2 = step1 / self.width()
+        # scale = x_2
+        # scale = step2 
+
+
+
+        # height = int(self.height() * scale)
+
+        # value = {
+        #         "width": kwargs['width'],
+        #         "height": height,
+        #         "scale": scale
+        #         }
+
+        if self.params["rotation"] == 90:
+            step0 = self.width() + self.params["crop_left"] + self.params["crop_right"]
+            step1 =  step0 / self.height()
+            scale = step1
+
+            # step2 = step1 * kwargs["width"]
+            # new_value = kwargs["source_x"] / kwargs["source_y"] * kwargs["width"]
+            # value = {
+            #     "height": kwargs['width'],
+            #     "width": int(step2) ,
+            #     "scale": step1
+            # }
+        return scale  
 
     def prep(self):
         # TODO: Throw an error if the thing doesn't exist
@@ -41,13 +121,20 @@ class SceneItem():
         for key in kwargs.keys():
             self.params[key] = kwargs[key]
 
-        if self.params['rotation'] == 90:
-            self.params['crop_top'] = kwargs['crop_right']
-            self.params['crop_bottom'] = kwargs['crop_left']
-            self.params['crop_left'] = kwargs['crop_top']
-            self.params['crop_right'] = kwargs['crop_bottom']
 
-        self.do_calculations()
+
+        # if self.params['rotation'] == 90:
+        #     self.params['crop_top'] = kwargs['crop_right']
+        #     self.params['crop_bottom'] = kwargs['crop_left']
+        #     self.params['crop_left'] = kwargs['crop_top']
+        #     self.params['crop_right'] = kwargs['crop_bottom']
+        #     thing = self.params['width'] / self.width()
+        #     target_height = self.height() * thing
+        #     print(target_height)
+        #     self.params['width'] = target_height
+
+
+        # self.do_calculations()
         self.set_width()
         self.crop_top()
         self.crop_bottom()
@@ -56,19 +143,19 @@ class SceneItem():
         self.set_rotation()
         self.set_position()
 
-        print(self.params)
+        # print(self.params)
 
-        print("Updates Complete - ")
+        # print("Updates Complete - ")
 
-    def do_calculations(self):
-        print("Doing calculations")
+    # def do_calculations(self):
+        # print("Doing calculations")
         # self.params['width'] = self.params['width'] + self.params['crop_left']  + self.params['crop_right']
-        width_multiplier = self.params['width']  / (self.params['width'] - self.params['crop_left'] - self.params['crop_right'])
+        # width_multiplier = self.params['width']  / (self.params['width'] - self.params['crop_left'] - self.params['crop_right'])
 
-        if self.params['rotation'] == 90:
-            width_multiplier = self.params['width']  / (self.params['width'] - self.params['crop_top'] - self.params['crop_bottom'])
+        # if self.params['rotation'] == 90:
+        #     width_multiplier = self.params['width']  / (self.params['width'] - self.params['crop_top'] - self.params['crop_bottom'])
 
-        self.params['width'] = self.params['width'] * width_multiplier
+        # self.params['width'] = self.params['width'] * width_multiplier
 
 
     def width(self):
@@ -78,14 +165,17 @@ class SceneItem():
         return obs.obs_source_get_height(self.source)
 
     def set_width(self):
-        scale_value = self.params['width'] / self.width() 
-        if self.params['rotation'] == 90:
-            scale_value = self.params['width'] / self.height() 
-        print(self.width())
-        scale = obs.vec2()
-        scale.x = scale_value
-        scale.y = scale_value
-        obs.obs_sceneitem_set_scale(self.item, scale)
+        # scale_value = self.params['width'] / self.width() 
+        # scale_value = self.params['width'] / self.height() 
+        # if self.params['rotation'] == 90:
+        #     scale_value =  self.params['width'] / target_height
+        # print(self.width())
+        scale_vec = obs.vec2()
+        # scale.x = scale_value
+        # scale.y = scale_value
+        scale_vec.x = self.scale()
+        scale_vec.y = self.scale()
+        obs.obs_sceneitem_set_scale(self.item, scale_vec)
 
     def apply_crop(self):
         obs.obs_sceneitem_set_crop(self.item, self.crop)
@@ -112,6 +202,8 @@ class SceneItem():
     def set_position(self):
         if self.params['rotation'] == 90:
             obs.obs_sceneitem_set_alignment(self.item, 9)
+        else: 
+            obs.obs_sceneitem_set_alignment(self.item, 5)
         pos = obs.vec2()
         pos.x = self.params['position_x']
         pos.y = self.params['position_y']
@@ -121,14 +213,14 @@ class SceneItem():
 def update_source_positions(props, prop):
     si = SceneItem(name="Video Capture Device")
     si.update(
-            rotation = 90,
-            width = 1880,
+            rotation = 0,
+            width = 1020,
             crop_left = 0,
             crop_right = 0,
-            crop_top = 700,
+            crop_top = 0,
             crop_bottom = 0,
-            position_x = 20,
-            position_y = 200,
+            position_x = 0,
+            position_y = 0,
     )
     si.cleanup()
 

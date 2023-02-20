@@ -11,8 +11,6 @@ class MyClass():
     def process(self, **kwargs):
         step1 = kwargs['width'] + kwargs['left'] + kwargs['right']
         step2 = step1 / kwargs['source_x']
-        # scale = kwargs['width']  / (kwargs['source_x'] + kwargs['left'])
-        # scale = (kwargs['source_x'] + kwargs['left']) / kwargs['width']
         scale = step2
         height = int(kwargs['source_y'] * scale)
         value = {
@@ -20,24 +18,8 @@ class MyClass():
                 "height": height,
                 "scale": scale
                 }
-
-        
-
-
-        # step1 = kwargs["width"] + kwargs["left"]
-        # step2 = step1 / kwargs['source_x']
-        # width = step2 * kwargs["width"]
-        # height = int(kwargs['source_y'] / kwargs['source_x'] * width)
-        # value = {
-        #         "width": width,
-        #         "height": height 
-        #     }
-
-
         if kwargs["rotation"] == 90:
             step0 = kwargs["source_x"] + kwargs["left"]
-            # step1 = kwargs["source_x"] / kwargs["source_y"]
-            # step1 = kwargs["source_x"] / step0
             step1 =  step0 / kwargs["source_y"] 
             step2 = step1 * kwargs["width"]
             new_value = kwargs["source_x"] / kwargs["source_y"] * kwargs["width"]
@@ -46,7 +28,6 @@ class MyClass():
                 "width": int(step2) ,
                 "scale": step1
             }
-
         return value
 
 
@@ -147,6 +128,20 @@ class ClassTest(unittest.TestCase):
         self.assertEqual(result['scale'], 1.1)
         self.assertEqual(result['height'], 1000)
 
+    def test_left_and_rignt_crop_with_rotation(self):
+        result = mc.process(
+                source_x=1000, 
+                source_y=800, 
+                width=1000,
+                rotation=90, 
+                left=100, 
+                right=100, 
+                top=0, 
+                bottom=0,
+                )
+        self.assertEqual(result['width'], 1375)
+        self.assertEqual(result['scale'], 1.375)
+        self.assertEqual(result['height'], 1000)
 
     # def test_left_crop_normal(self):
     #     result = mc.process(
