@@ -21,6 +21,8 @@ class MyClass():
                 "scale": scale
                 }
 
+        
+
 
         # step1 = kwargs["width"] + kwargs["left"]
         # step2 = step1 / kwargs['source_x']
@@ -32,12 +34,18 @@ class MyClass():
         #     }
 
 
-        # if kwargs["rotation"] == 90:
-        #     new_value = kwargs["source_x"] / kwargs["source_y"] * kwargs["width"]
-        #     value = {
-        #         "height": kwargs['width'],
-        #         "width": int(new_value) 
-        #     }
+        if kwargs["rotation"] == 90:
+            step0 = kwargs["source_x"] + kwargs["left"]
+            # step1 = kwargs["source_x"] / kwargs["source_y"]
+            # step1 = kwargs["source_x"] / step0
+            step1 =  step0 / kwargs["source_y"] 
+            step2 = step1 * kwargs["width"]
+            new_value = kwargs["source_x"] / kwargs["source_y"] * kwargs["width"]
+            value = {
+                "height": kwargs['width'],
+                "width": int(step2) ,
+                "scale": step1
+            }
 
         return value
 
@@ -109,6 +117,35 @@ class ClassTest(unittest.TestCase):
         self.assertEqual(result['height'], 1200)
 
 
+    def test_rotation_baseline(self):
+        result = mc.process(
+                source_x=1920, 
+                source_y=1080, 
+                width=1920,
+                rotation=90, 
+                left=0, 
+                right=0, 
+                top=0, 
+                bottom=0,
+                )
+        self.assertEqual(result['width'], 3413)
+        self.assertEqual(result['height'], 1920)
+        self.assertEqual(result['scale'], 1.7777777777777777)
+
+    def test_left_crop_with_rotation(self):
+        result = mc.process(
+                source_x=1000, 
+                source_y=1000, 
+                width=1000,
+                rotation=90, 
+                left=100, 
+                right=0, 
+                top=0, 
+                bottom=0,
+                )
+        self.assertEqual(result['width'], 1100)
+        self.assertEqual(result['scale'], 1.1)
+        self.assertEqual(result['height'], 1000)
 
 
     # def test_left_crop_normal(self):
