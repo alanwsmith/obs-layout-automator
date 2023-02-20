@@ -58,11 +58,19 @@ class SceneItem():
     def rotate(self, value):
         obs.obs_sceneitem_set_rot(self.item, value)
 
+    def set_position(self, x, y):
+        pos = obs.vec2()
+        pos.x = x
+        pos.y = y
+        obs.obs_sceneitem_set_pos(self.item, pos)
+
+
 def update_source_positions(props, prop):
     si = SceneItem(name="Video Capture Device")
-    si.rotate(90)
+    si.rotate(0)
     si.set_width(900)
-    si.crop_left(0)
+    si.crop_left(900)
+    si.set_position(20, 20)
     si.cleanup()
 
 
