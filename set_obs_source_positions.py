@@ -175,6 +175,19 @@ def update_source_positions(props, prop):
     )
     si.cleanup()
 
+    si = SceneItem(name="Video Capture Device 2")
+    si.update(
+            rotation = 90,
+            width = 1520,
+            crop_left = 0,
+            crop_right = 0,
+            crop_top = 1284,
+            crop_bottom = 520,
+            position_x = 8,
+            position_y = 900,
+    )
+    si.cleanup()
+
 
 def script_description():
     return "Position Sources In Scenes"

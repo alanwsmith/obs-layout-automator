@@ -1,7 +1,8 @@
 scenes:
-  - name: Color Source
+  - name: Video Capture Device
     px: 800
     py: 800
-  - name: Test Source
-    px: 600
-    py: 600
+    cl: 80
+    cr: 80
+    ct: 80
+    cb: 80
