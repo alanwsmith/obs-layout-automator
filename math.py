@@ -9,7 +9,11 @@ class MyClass():
         return True
 
     def process(self, **kwargs):
-        scale = kwargs['width'] / kwargs['source_x']
+        step1 = kwargs['width'] + kwargs['left']
+        step2 = step1 / kwargs['source_x']
+        # scale = kwargs['width']  / (kwargs['source_x'] + kwargs['left'])
+        # scale = (kwargs['source_x'] + kwargs['left']) / kwargs['width']
+        scale = step2
         height = int(kwargs['source_y'] * scale)
         value = {
                 "width": kwargs['width'],
@@ -44,7 +48,7 @@ class ClassTest(unittest.TestCase):
         global mc
         mc = MyClass()
 
-    def test_1(self):
+    def test_baseline(self):
         result = mc.process(
                 source_x=1920, 
                 source_y=1080, 
@@ -59,7 +63,7 @@ class ClassTest(unittest.TestCase):
         self.assertEqual(result['height'], 1080)
         self.assertEqual(result['scale'], 1.0)
 
-    def test_1b(self):
+    def test_verify_basic_scale(self):
         result = mc.process(
                 source_x=2000, 
                 source_y=1000, 
@@ -74,6 +78,20 @@ class ClassTest(unittest.TestCase):
         self.assertEqual(result['height'], 500)
         self.assertEqual(result['scale'], 0.5)
 
+    def test_left_crop_no_rotation(self):
+        result = mc.process(
+                source_x=1000, 
+                source_y=1000, 
+                width=1000,
+                rotation=0, 
+                left=100, 
+                right=0, 
+                top=0, 
+                bottom=0,
+                )
+        self.assertEqual(result['width'], 1000)
+        self.assertEqual(result['scale'], 1.1)
+        self.assertEqual(result['height'], 1100)
 
     # def test_left_crop_normal(self):
     #     result = mc.process(
