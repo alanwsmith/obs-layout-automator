@@ -1,27 +1,31 @@
 # import obspython as S
 
-
 import obspython as obs
 import os.path
-import toml
+import yaml 
 
-# config_path = os.path.join("d:", "obs-position-sources-script", "config.yaml")
+from pprint import pprint
+
+config_path = os.path.join("d:", "obs-position-sources-script", "config.yaml")
 
 def position_sources(props, prop):
-    # with open(config_path) as _config:
-    #     sources 
-    source_name = "Color Source"
-    current_scene = obs.obs_frontend_get_current_scene()
-    scene = obs.obs_scene_from_source(current_scene)
-    source = obs.obs_get_source_by_name(source_name)
-    scene_item = obs.obs_scene_find_source(scene, source_name)
-    if scene_item:
-        pos = obs.vec2()
-        pos.x = 100
-        pos.y = 400 
-        obs.obs_sceneitem_set_pos(scene_item, pos)
-    obs.obs_scene_release(scene)
-    obs.obs_source_release(source)
+
+    with open(config_path, "rb") as _config:
+        config = yaml.safe_load(_config)
+
+    for settings in config["scenes"]:
+        source_name = settings["name"]
+        current_scene = obs.obs_frontend_get_current_scene()
+        scene = obs.obs_scene_from_source(current_scene)
+        source = obs.obs_get_source_by_name(source_name)
+        scene_item = obs.obs_scene_find_source(scene, source_name)
+        if scene_item:
+            pos = obs.vec2()
+            pos.x = settings["px"]
+            pos.y = settings["py"] 
+            obs.obs_sceneitem_set_pos(scene_item, pos)
+        obs.obs_scene_release(scene)
+        obs.obs_source_release(source)
 
 def script_description():
     return "Position Sources In Scenes"

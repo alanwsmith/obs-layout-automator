@@ -6,9 +6,13 @@ This is the python script I use to make it
 easier to position sources in OBS scenes
 by doing it programmatically.
 
+The goal of this is not to do everything,
+just to make positioning things work
+via a config.
+
 ## Goals
 
-- YAML file for configuration
+- TOML file for configuration
 - Configure all scenes and sources from
   a single file
 - Adjust position, sizing, and crops
@@ -32,14 +36,16 @@ C:/Users/alan/AppData/Local/Programs/Python/Pypthon310
 TODO: Point to article on 3.6-3.10 working but not
 3.11. Since 3.6 is deprecated, I installed 3.10
 
-## Installing toml
+## Installing yaml
 
 I had to install a toml module. I did this from the
 command line with:
 
 ```
-python -m pip install toml
+python -m pip install pyyaml
 ```
+
+NOTE: that's `pyyaml` and not `yaml`
 
 ## Loading The Script
 
@@ -56,3 +62,4 @@ TKTKTKTK
   for getting me started in general
 - And [this script](https://github.com/Jwolter0/OBS-Studio-Python-Scripting-Cheatsheet-obspython-Examples-of-API/blob/master/src/move_source_.py)
   specifically
+- https://toml.io/en/

@@ -1,0 +1,7 @@
+scenes:
+  - name: Color Source
+    px: 800
+    py: 800
+  - name: Test Source
+    px: 600
+    py: 600
