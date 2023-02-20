@@ -9,13 +9,18 @@ class MyClass():
         return True
 
     def process(self, **kwargs):
+        step1 = kwargs["width"] + kwargs["left"]
+        step2 = step1 / kwargs['source_x']
+        width = step2 * kwargs["width"]
+        height = kwargs['source_y'] / kwargs['source_x'] * width
         value = {
-                "width": 1920,
-                "height": 1080 
+                "width": width,
+                "height": height 
             }
 
+
         if kwargs["rotation"] == 90:
-            new_value = kwargs["scene_x"] / kwargs["scene_y"] * kwargs["width"]
+            new_value = kwargs["source_x"] / kwargs["source_y"] * kwargs["width"]
             value = {
                 "height": kwargs['width'],
                 "width": int(new_value) 
@@ -32,8 +37,8 @@ class ClassTest(unittest.TestCase):
 
     def test_1(self):
         result = mc.process(
-                scene_x=1920, 
-                scene_y=1080, 
+                source_x=1920, 
+                source_y=1080, 
                 width=1920,
                 rotation=0, 
                 left=0, 
@@ -46,8 +51,8 @@ class ClassTest(unittest.TestCase):
 
     def test_2(self):
         result = mc.process(
-                scene_x=1920, 
-                scene_y=1080, 
+                source_x=1920, 
+                source_y=1080, 
                 width=1920,
                 rotation=90, 
                 left=0, 
@@ -58,6 +63,21 @@ class ClassTest(unittest.TestCase):
         self.assertEqual(result['height'], 1920)
         self.assertEqual(result['width'], 3413)
     
+
+    def test_3(self):
+        result = mc.process(
+                source_x=1000, 
+                source_y=800, 
+                width=1000,
+                rotation=0, 
+                left=200, 
+                right=0, 
+                top=0, 
+                bottom=0,
+                )
+        # self.assertEqual(result['height'], 1920)
+        self.assertEqual(result['width'], 1200)
+
 
 
 if __name__ == '__main__':
