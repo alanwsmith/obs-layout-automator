@@ -15,9 +15,10 @@ class MyClass():
             }
 
         if kwargs["rotation"] == 90:
+            new_value = kwargs["scene_x"] / kwargs["scene_y"] * kwargs["width"]
             value = {
-                "height": 1920,
-                "width": 3413 
+                "height": kwargs['width'],
+                "width": int(new_value) 
             }
 
         return value
