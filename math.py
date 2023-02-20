@@ -9,11 +9,12 @@ class MyClass():
         return True
 
     def process(self, **kwargs):
-        # height = int(kwargs['source_x'] / kwargs['source_y'] * kwargs['width'])
-        height = int(kwargs['source_y'] / kwargs['source_x'] * kwargs['width'])
+        scale = kwargs['width'] / kwargs['source_x']
+        height = int(kwargs['source_y'] * scale)
         value = {
                 "width": kwargs['width'],
-                "height": height
+                "height": height,
+                "scale": scale
                 }
 
 
@@ -56,6 +57,7 @@ class ClassTest(unittest.TestCase):
                 )
         self.assertEqual(result['width'], 1920)
         self.assertEqual(result['height'], 1080)
+        self.assertEqual(result['scale'], 1.0)
 
     def test_1b(self):
         result = mc.process(
@@ -70,6 +72,24 @@ class ClassTest(unittest.TestCase):
                 )
         self.assertEqual(result['width'], 1000)
         self.assertEqual(result['height'], 500)
+        self.assertEqual(result['scale'], 0.5)
+
+
+    # def test_left_crop_normal(self):
+    #     result = mc.process(
+    #             source_x=1000, 
+    #             source_y=1000, 
+    #             width=1000,
+    #             rotation=0, 
+    #             left=200, 
+    #             right=0, 
+    #             top=0, 
+    #             bottom=0,
+    #             )
+    #     self.assertEqual(result['width'], 1000)
+    #     # self.assertEqual(result['height'], 1200)
+
+
 
 
     # def test_2(self):
