@@ -12,7 +12,7 @@ class MyClass():
         step1 = kwargs["width"] + kwargs["left"]
         step2 = step1 / kwargs['source_x']
         width = step2 * kwargs["width"]
-        height = kwargs['source_y'] / kwargs['source_x'] * width
+        height = int(kwargs['source_y'] / kwargs['source_x'] * width)
         value = {
                 "width": width,
                 "height": height 
@@ -75,8 +75,8 @@ class ClassTest(unittest.TestCase):
                 top=0, 
                 bottom=0,
                 )
-        # self.assertEqual(result['height'], 1920)
         self.assertEqual(result['width'], 1200)
+        self.assertEqual(result['height'], 960)
 
 
 
