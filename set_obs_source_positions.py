@@ -10,7 +10,7 @@ class SceneItem():
     def __init__(self, name):
         self.name = name 
         self.prep()
-    
+
     def cleanup(self):
         obs.obs_scene_release(self.scene_obj)
         obs.obs_source_release(self.source)
@@ -26,11 +26,32 @@ class SceneItem():
         obs.obs_sceneitem_get_crop(self.item, self.crop)
         obs.obs_sceneitem_get_info(self.item, self.info)
 
+    def update(self, **kwargs):
+        self.params = {
+                "rotation": 0,
+                "width": self.width(),
+                "crop_top": 0,
+                "crop_bottom": 0,
+                "crop_left": 0,
+                "crop_right": 0,
+                "position_x": 0,
+                "position_y": 0,
+            }
+
+        for key in kwargs.keys():
+            self.params[key] = kwargs[key]
+
+        self.set_width()
+
+        print("Updates Complete")
+
+
+
     def width(self):
         return obs.obs_source_get_width(self.source)
 
-    def set_width(self, value):
-        scale_value = value / self.width() 
+    def set_width(self):
+        scale_value = self.params['width'] / self.width() 
         scale = obs.vec2()
         scale.x = scale_value
         scale.y = scale_value
@@ -67,10 +88,10 @@ class SceneItem():
 
 def update_source_positions(props, prop):
     si = SceneItem(name="Video Capture Device")
-    si.rotate(0)
-    si.set_width(900)
-    si.crop_left(900)
-    si.set_position(20, 20)
+    si.update(
+        width=1000,
+        crop_left=500
+    )
     si.cleanup()
 
 
