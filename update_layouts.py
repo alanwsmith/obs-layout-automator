@@ -3,7 +3,7 @@ from os.path import getmtime, join, isfile
 from yaml import load, SafeLoader
 
 config_path = join(
-    "D:", "obs-position-sources-script", "config.yaml"
+    "D:", "obs-layout-automator", "config.yaml"
 )
 
 global update_time

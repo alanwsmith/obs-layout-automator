@@ -148,69 +148,6 @@ class ClassTest(unittest.TestCase):
         self.assertEqual(result['scale'], 1.375)
         self.assertEqual(result['height'], 1000)
 
-    # def test_left_crop_normal(self):
-    #     result = mc.process(
-    #             source_x=1000, 
-    #             source_y=1000, 
-    #             width=1000,
-    #             rotation=0, 
-    #             left=200, 
-    #             right=0, 
-    #             top=0, 
-    #             bottom=0,
-    #             )
-    #     self.assertEqual(result['width'], 1000)
-    #     # self.assertEqual(result['height'], 1200)
-
-
-
-
-    # def test_2(self):
-    #     result = mc.process(
-    #             source_x=1920, 
-    #             source_y=1080, 
-    #             width=1920,
-    #             rotation=90, 
-    #             left=0, 
-    #             right=0, 
-    #             top=0, 
-    #             bottom=0,
-    #             )
-    #     self.assertEqual(result['height'], 1920)
-    #     self.assertEqual(result['width'], 3413)
-    
-
-    # def test_3(self):
-    #     result = mc.process(
-    #             source_x=1000, 
-    #             source_y=800, 
-    #             width=1000,
-    #             rotation=0, 
-    #             left=200, 
-    #             right=0, 
-    #             top=0, 
-    #             bottom=0,
-    #             )
-    #     self.assertEqual(result['width'], 1000)
-    #     # self.assertEqual(result['height'], 960)
-
-    # def test_4(self):
-    #     result = mc.process(
-    #             source_x=1000, 
-    #             source_y=1000, 
-    #             width=1000,
-    #             rotation=0, 
-    #             left=200, 
-    #             right=0, 
-    #             top=0, 
-    #             bottom=0,
-    #             )
-    #     self.assertEqual(result['width'], 1000)
-    #     # self.assertEqual(result['height'], 1230)
-
-
-
-
 
 
 if __name__ == '__main__':
