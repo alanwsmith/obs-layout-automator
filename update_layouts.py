@@ -2,25 +2,28 @@ import obspython as obs
 from os.path import getmtime, join, isfile
 
 config_path = join(
-    "D:", 
-    "obs-position-sources-script",
-    "config.yaml"
+    "D:", "obs-position-sources-script", "config.yaml"
 )
 
 global update_time
 mod_time = 0
 
+def update_layouts():
+    print("Making update")
+
 def check_file():
     global mod_time
-    print("Checking file")
-    if isfile(config_path) == False:
-        print(f"- File does not exist: {file_path}")
-    else:
+    if isfile(config_path) == True:
         compare_time = getmtime(config_path)
         if mod_time != compare_time:
             mod_time = compare_time
-            print(f"- File Changed: {mod_time}")
+            update_layouts()
+    else:
+        print(f"ERROR: no config at {config_path}")
+
 obs.timer_add(check_file, 1000)
+
+
 
 
 def script_description():
