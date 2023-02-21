@@ -1,0 +1,20 @@
+scenes:
+  "MainDev":
+    "Mac Screen":
+      rotation: 90
+      width: 1420
+      crop_left: 0
+      crop_right: 0
+      crop_top: 545
+      crop_bottom: 700
+      position_x: 20
+      position_y: 20
+    "Video Capture Device 2":
+      rotation: 90
+      width: 1420
+      crop_left: 0
+      crop_right: 0
+      crop_top: 1283
+      crop_bottom: 525
+      position_x: 20
+      position_y: 920
