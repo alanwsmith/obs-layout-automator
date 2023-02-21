@@ -1,5 +1,6 @@
 import obspython as obs
 from os.path import getmtime, join, isfile
+from yaml import load, SafeLoader
 
 config_path = join(
     "D:", "obs-position-sources-script", "config.yaml"
@@ -9,6 +10,12 @@ global update_time
 mod_time = 0
 
 def update_layouts():
+    with open(config_path) as _yaml:
+        config = load(_yaml, SafeLoader)
+
+    print(config)
+
+
     print("Making update")
 
 def check_file():

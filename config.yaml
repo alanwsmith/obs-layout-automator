@@ -1,8 +1,5 @@
-scenes:
-  - name: Video Capture Device
-    px: 800
-    py: 800
-    cl: 80
-    cr: 80
-    ct: 80
-    cb: 80
+- scenes:
+    - name: MainDev
+      sources:
+        - name: Color Source
+          px: 290
