@@ -1,5 +1,10 @@
 # OBS Position Sources Script
 
+TODO: reanme this to something like
+
+OBS Layout Automator
+
+
 ## Overview
 
 This is the python script I use to make it
