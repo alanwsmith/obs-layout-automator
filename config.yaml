@@ -1,5 +1,11 @@
 scenes:
   "MainDev":
-    "Color Source":
-      px: 900
-      py: 900
+    "Video Capture Device 2":
+      rotation: 90
+      width: 500
+      crop_left: 0
+      crop_right: 0
+      crop_top: 0
+      crop_bottom: 0
+      position_x: 130
+      position_y: 130
