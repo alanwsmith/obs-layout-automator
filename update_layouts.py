@@ -9,14 +9,43 @@ config_path = join(
 global update_time
 mod_time = 0
 
+
+class Updater():
+    def update(self, item, data):
+        self.item = item
+        self.set_position(data['px'], data['py'])
+
+    def set_position(self, x, y):
+        pos = obs.vec2()
+        pos.x = x
+        pos.y = y
+        obs.obs_sceneitem_set_pos(self.item, pos)
+
+
+
+
 def update_layouts():
+    print("Making update")
     with open(config_path) as _yaml:
         config = load(_yaml, SafeLoader)
+    
+    scenes = obs.obs_frontend_get_scenes()
+    for scene_source in scenes:
+        scene_name = obs.obs_source_get_name(scene_source)
+        scene_scene = obs.obs_scene_from_source(scene_source)
 
-    print(config)
+        if scene_name in config['scenes']:
+            for item in obs.obs_scene_enum_items(scene_scene):
+                item_source = obs.obs_sceneitem_get_source(item)
+                sourceitem_name = obs.obs_source_get_name(item_source)
+                if sourceitem_name in config['scenes'][scene_name]:
+                    u = Updater()
+                    u.update(item, config['scenes'][scene_name][sourceitem_name])
+                    #print(f"{scene_name} - {sourceitem_name}")
+
+    #print(config)
 
 
-    print("Making update")
 
 def check_file():
     global mod_time

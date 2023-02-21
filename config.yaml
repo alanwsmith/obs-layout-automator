@@ -1,5 +1,5 @@
-- scenes:
-    - name: MainDev
-      sources:
-        - name: Color Source
-          px: 290
+scenes:
+  "MainDev":
+    "Color Source":
+      px: 900
+      py: 900
