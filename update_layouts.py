@@ -11,7 +11,6 @@ mod_time = 0
 
 class SceneItem():
     def __init__(self, source, item):
-        # self.name = name 
         self.item = item
         self.source = source
         self.prep()
@@ -24,21 +23,15 @@ class SceneItem():
         total_width_crop = self.params['crop_left'] + self.params['crop_right']
         r1 = self.width() - total_width_crop
         r2 = self.params['width'] / r1
-        # print(r1)
-        # print(r2)
         scale = r2
-
         if self.params["rotation"] == 90:
             total_height_crop = self.params['crop_bottom'] + self.params['crop_top']
             t1 = self.height() - total_height_crop
             t2 = self.params['width'] / t1 
             scale = t2
-
         return scale  
 
     def prep(self):
-        # TODO: Throw an error if the thing doesn't exist
-
         self.crop = obs.obs_sceneitem_crop()
         self.info = obs.obs_transform_info()
         obs.obs_sceneitem_get_crop(self.item, self.crop)
@@ -55,24 +48,14 @@ class SceneItem():
                 "position_x": 0,
                 "position_y": 0,
             }
-
         for key in kwargs.keys():
             self.params[key] = kwargs[key]
-
-
         if self.params['rotation'] == 90:
             self.params['crop_top'] = kwargs['crop_right']
             self.params['crop_bottom'] = kwargs['crop_left']
             self.params['crop_left'] = kwargs['crop_top']
             self.params['crop_right'] = kwargs['crop_bottom']
 
-            # thing = self.params['width'] / self.width()
-            # target_height = self.height() * thing
-            # print(target_height)
-            # self.params['width'] = target_height
-
-
-        # self.do_calculations()
         self.set_width()
         self.crop_top()
         self.crop_bottom()
@@ -82,7 +65,6 @@ class SceneItem():
         self.set_position()
 
 
-
     def width(self):
         return obs.obs_source_get_width(self.source)
 
@@ -90,14 +72,7 @@ class SceneItem():
         return obs.obs_source_get_height(self.source)
 
     def set_width(self):
-        # scale_value = self.params['width'] / self.width() 
-        # scale_value = self.params['width'] / self.height() 
-        # if self.params['rotation'] == 90:
-        #     scale_value =  self.params['width'] / target_height
-        # print(self.width())
         scale_vec = obs.vec2()
-        # scale.x = scale_value
-        # scale.y = scale_value
         scale_vec.x = self.scale()
         scale_vec.y = self.scale()
         obs.obs_sceneitem_set_scale(self.item, scale_vec)
@@ -151,10 +126,7 @@ def update_layouts():
                 sourceitem_name = obs.obs_source_get_name(item_source)
                 if sourceitem_name in config['scenes'][scene_name]:
                     si = SceneItem(scene_source, item)
-                    # si.update(config['scenes'][scene_name][sourceitem_name])
-
                     value = config['scenes'][scene_name][sourceitem_name]
-
                     si.update(
                             rotation = value['rotation'],
                             width = value['width'],
@@ -177,9 +149,10 @@ def check_file():
     else:
         print(f"ERROR: no config at {config_path}")
 
+# NOTE: Instead of using the timer, you can 
+# use a frame tick that's somewhere in the
+# OBS docs. 
 obs.timer_add(check_file, 1000)
-
-
 
 
 def script_description():
