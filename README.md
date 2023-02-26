@@ -4,6 +4,15 @@ TODO: reanme this to something like
 
 OBS Layout Automator
 
+NOTE: Use the `yaml_maker.py` file to 
+build the YAML file easier that's then
+picked up by the OBS process
+
+---
+
+
+---
+
 
 ## Overview
 
