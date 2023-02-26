@@ -114,6 +114,8 @@ def update_layouts():
     print("Making update v2")
     with open(config_path) as _yaml:
         config = load(_yaml, SafeLoader)
+
+    print(config)
     
     scenes = obs.obs_frontend_get_scenes()
     for scene_source in scenes:

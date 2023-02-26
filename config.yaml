@@ -1,20 +1,41 @@
 scenes:
-  "MainDev":
-    "Mac Screen":
+  "Main":
+    "MainWindow":
+      width: 2900
+      position_x: 16
+      position_y: 28
       rotation: 90
-      width: 1420
+      crop_top: 1086
+      crop_bottom: 1366
       crop_left: 0
       crop_right: 0
-      crop_top: 545
-      crop_bottom: 700
-      position_x: 20
-      position_y: 20
-    "Video Capture Device 2":
+
+    "InfoCharlie":
+      width: 2900
+      position_x: 16
+      position_y: 1926
       rotation: 90
-      width: 1420
+      crop_top: 3694
+      crop_bottom: 0
       crop_left: 0
       crop_right: 0
-      crop_top: 1283
-      crop_bottom: 525
-      position_x: 20
-      position_y: 920
+
+    "InfoAlfa":
+      width: 896
+      position_x: 2932
+      position_y: 528
+      rotation: 90
+      crop_top: 2538
+      crop_bottom: 282
+      crop_left: 0
+      crop_right: 1490
+
+    "InfoBravo":
+      width: 896
+      position_x: 2932
+      position_y: 1926
+      rotation: 90
+      crop_top: 2538
+      crop_bottom: 1156
+      crop_left: 722
+      crop_right: 768

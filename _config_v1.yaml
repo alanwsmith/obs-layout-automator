@@ -1,0 +1,42 @@
+note: This is the first one with a four line bottom row
+scenes:
+  "Main":
+    "MainWindow":
+      width: 2780
+      position_x: 22
+      position_y: 32
+      rotation: 90
+      crop_top: 1086
+      crop_bottom: 1366
+      crop_left: 0
+      crop_right: 0
+
+    "InfoCharlie":
+      width: 2780
+      position_x: 22
+      position_y: 1864
+      rotation: 90
+      crop_top: 3638
+      crop_bottom: 0
+      crop_left: 0
+      crop_right: 0
+
+    "InfoAlfa":
+      width: 978
+      position_x: 2840
+      position_y: 562
+      rotation: 90
+      crop_top: 2538
+      crop_bottom: 374
+      crop_left: 0
+      crop_right: 1438
+
+    "InfoBravo":
+      width: 978
+      position_x: 2840
+      position_y: 1864
+      rotation: 90
+      crop_top: 2538
+      crop_bottom: 1110
+      crop_left: 722
+      crop_right: 716
