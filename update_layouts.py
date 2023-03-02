@@ -114,31 +114,104 @@ def update_layouts():
     print("Making update v2")
     with open(config_path) as _yaml:
         config = load(_yaml, SafeLoader)
+        print(config)
 
-    print(config)
-    
+    # scenes = obs.obs_frontend_get_scenes()
+    # for scene_source in scenes:
+    #     scene_name = obs.obs_source_get_name(scene_source)
+    #     scene_scene = obs.obs_scene_from_source(scene_source)
+    #     if scene_name == "Main":
+    #         for item in obs.obs_scene_enum_items(scene_scene):
+    #             item_source = obs.obs_sceneitem_get_source(item)
+    #             sourceitem_name = obs.obs_source_get_name(item_source)
+    #             if sourceitem_name in config['windows']:
+    #                 si = SceneItem(scene_source, item)
+    #                 value = config['windows'][sourceitem_name]
+    #                 print(f"{scene_name} - {sourceitem_name}")
+    #                 si.update(
+    #                         rotation = value['rotation'],
+    #                         width = value['width'],
+    #                         crop_left = value['crop_left'],
+    #                         crop_right = value['crop_right'],
+    #                         crop_top = value['crop_top'],
+    #                         crop_bottom = value['crop_bottom'],
+    #                         position_x = value['position_x'],
+    #                         position_y = value['position_y'],
+    #                     )
+
+    # scene_scene = obs.obs_scene_from_source('Main')
+
     scenes = obs.obs_frontend_get_scenes()
+
     for scene_source in scenes:
         scene_name = obs.obs_source_get_name(scene_source)
         scene_scene = obs.obs_scene_from_source(scene_source)
-
         if scene_name in config['scenes']:
+            print(scene_name)
             for item in obs.obs_scene_enum_items(scene_scene):
                 item_source = obs.obs_sceneitem_get_source(item)
                 sourceitem_name = obs.obs_source_get_name(item_source)
-                if sourceitem_name in config['scenes'][scene_name]:
-                    si = SceneItem(scene_source, item)
-                    value = config['scenes'][scene_name][sourceitem_name]
-                    si.update(
-                            rotation = value['rotation'],
-                            width = value['width'],
-                            crop_left = value['crop_left'],
-                            crop_right = value['crop_right'],
-                            crop_top = value['crop_top'],
-                            crop_bottom = value['crop_bottom'],
-                            position_x = value['position_x'],
-                            position_y = value['position_y'],
-                        )
+                print(sourceitem_name)
+
+    #             if sourceitem_name in config['scenes'][scene_name]:
+    #                 si = SceneItem(scene_source, item)
+    #                 value = config['scenes'][scene_name][sourceitem_name]
+    #                 si.update(
+    #                         rotation = value['rotation'],
+    #                         width = value['width'],
+    #                         crop_left = value['crop_left'],
+    #                         crop_right = value['crop_right'],
+    #                         crop_top = value['crop_top'],
+    #                         crop_bottom = value['crop_bottom'],
+    #                         position_x = value['position_x'],
+    #                         position_y = value['position_y'],
+    #                     )
+    
+
+     # This is for the original format of the file when you had
+     # different scenes. Could add them later if needed but only 
+     # using one for now so sticking with the single approach.
+    
+     # scenes = obs.obs_frontend_get_scenes()
+     # for scene_source in scenes:
+     #     scene_name = obs.obs_source_get_name(scene_source)
+     #     scene_scene = obs.obs_scene_from_source(scene_source)
+
+        # if scene_name in config['scenes']:
+        #     for item in obs.obs_scene_enum_items(scene_scene):
+        #         item_source = obs.obs_sceneitem_get_source(item)
+        #         sourceitem_name = obs.obs_source_get_name(item_source)
+        #         if sourceitem_name in config['scenes'][scene_name]:
+        #             si = SceneItem(scene_source, item)
+        #             value = config['scenes'][scene_name][sourceitem_name]
+        #             si.update(
+        #                     rotation = value['rotation'],
+        #                     width = value['width'],
+        #                     crop_left = value['crop_left'],
+        #                     crop_right = value['crop_right'],
+        #                     crop_top = value['crop_top'],
+        #                     crop_bottom = value['crop_bottom'],
+        #                     position_x = value['position_x'],
+        #                     position_y = value['position_y'],
+        #                 )
+
+        # if scene_name in config['scenes']:
+        #     for item in obs.obs_scene_enum_items(scene_scene):
+        #         item_source = obs.obs_sceneitem_get_source(item)
+        #         sourceitem_name = obs.obs_source_get_name(item_source)
+        #         if sourceitem_name in config['scenes'][scene_name]:
+        #             si = SceneItem(scene_source, item)
+        #             value = config['scenes'][scene_name][sourceitem_name]
+        #             si.update(
+        #                     rotation = value['rotation'],
+        #                     width = value['width'],
+        #                     crop_left = value['crop_left'],
+        #                     crop_right = value['crop_right'],
+        #                     crop_top = value['crop_top'],
+        #                     crop_bottom = value['crop_bottom'],
+        #                     position_x = value['position_x'],
+        #                     position_y = value['position_y'],
+        #                 )
 
 
 def check_file():
