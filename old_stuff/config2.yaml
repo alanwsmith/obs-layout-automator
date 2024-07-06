@@ -4,7 +4,7 @@ scenes:
       source_x: 0
       source_y: 633
       source_width: 1080
-      source_height: 584
+      source_height: 560
       scene_multiplier: 2.610469068660775
       rotation: 90
       position_x: 30
@@ -16,37 +16,37 @@ scenes:
       override_width: null
       override_height: null
       width: 2819
-      heigth: 1524
+      heigth: 1461
       crop_top: 1266
-      crop_bottom: 1406
+      crop_bottom: 1454
       crop_left: 0
       crop_right: 0
     Bravo:
-      source_x: 2
-      source_y: 1373
-      source_width: 1078
-      source_height: 176
+      source_x: 0
+      source_y: 1351
+      source_width: 1080
+      source_height: 224
       scene_multiplier: 2.610469068660775
       rotation: 90
       position_x: 30
-      position_y: 1584
+      position_y: 1521
       override_crop_top: null
       override_crop_bottom: null
       override_crop_left: null
       override_crop_right: null
       override_width: null
       override_height: null
-      width: 2814
-      heigth: 459
-      crop_top: 2746
-      crop_bottom: 742
-      crop_left: 4
+      width: 2819
+      heigth: 584
+      crop_top: 2702
+      crop_bottom: 690
+      crop_left: 0
       crop_right: 0
     Charlie:
       source_x: 410
-      source_y: 298
+      source_y: 322
       source_width: 361
-      source_height: 292
+      source_height: 268
       scene_multiplier: 2.610469068660775
       rotation: 90
       position_x: 2879
@@ -58,8 +58,8 @@ scenes:
       override_width: null
       override_height: null
       width: 942
-      heigth: 762
-      crop_top: 596
+      heigth: 699
+      crop_top: 644
       crop_bottom: 2660
       crop_left: 820
       crop_right: 618
@@ -67,11 +67,11 @@ scenes:
       source_x: 36
       source_y: 1645
       source_width: 358
-      source_height: 158
+      source_height: 92
       scene_multiplier: 2.610469068660775
       rotation: 90
       position_x: 2879
-      position_y: 1584
+      position_y: 1521
       override_crop_top: null
       override_crop_bottom: null
       override_crop_left: null
@@ -79,9 +79,9 @@ scenes:
       override_width: null
       override_height: null
       width: 934
-      heigth: 412
+      heigth: 240
       crop_top: 3290
-      crop_bottom: 234
+      crop_bottom: 366
       crop_left: 72
       crop_right: 1372
     FaceCam:

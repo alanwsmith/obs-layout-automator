@@ -1,0 +1,76 @@
+windows:
+  Delta:
+    source_x: 36
+    source_y: 1645
+    source_width: 358
+    source_height: 158
+    width: 934
+    height: 412
+    position_x: 2879
+    position_y: 1584
+    crop_top: 3290
+    crop_bottom: 234
+    crop_left: 72
+    crop_right: 1372
+    rotation: 90
+  Bravo:
+    source_x: 2
+    source_y: 1373
+    source_width: 1078
+    source_height: 176
+    width: 2814
+    height: 459
+    position_x: 30
+    position_y: 1584
+    crop_top: 2746
+    crop_bottom: 742
+    crop_left: 4
+    crop_right: 0
+    rotation: 90
+  Alfa:
+    source_x: 0
+    source_y: 633
+    source_width: 1080
+    source_height: 584
+    width: 2819
+    height: 1524
+    position_x: 30
+    position_y: 30
+    crop_top: 1266
+    crop_bottom: 1406
+    crop_left: 0
+    crop_right: 0
+    rotation: 90
+  FaceCam:
+    source_x: 0
+    source_y: 0
+    source_width: 3840
+    source_height: 2160
+    width: 942
+    height: 630
+    position_x: 2879
+    position_y: 30
+    crop_top: 0
+    crop_bottom: 0
+    crop_left: 600
+    crop_right: 0
+    rotation: 0
+  Charlie:
+    source_x: 410
+    source_y: 298
+    source_width: 361
+    source_height: 292
+    width: 942
+    height: 762
+    position_x: 2879
+    position_y: 792
+    crop_top: 596
+    crop_bottom: 2660
+    crop_left: 820
+    crop_right: 618
+    rotation: 90
+row_padding: 30
+top_padding: 30
+side_padding: 30
+column_padding: 30
+obs_width: 3840

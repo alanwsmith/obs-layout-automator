@@ -1,0 +1,16 @@
+<svg viewBox="0 0 3840 2160" xmlns="http://www.w3.org/2000/svg">
+<mask id="hole-mask">
+<rect fill="white" height="2160" rx="40" width="3840" x="0" y="0"/>
+<rect fill="black" height="1524" rx="30" width="2819" x="30" y="30"/>
+<rect fill="black" height="459" rx="30" width="2814" x="30" y="1584"/>
+<rect fill="black" height="762" rx="30" width="942" x="2879" y="792"/>
+<rect fill="black" height="412" rx="30" width="934" x="2879" y="1584"/>
+<rect fill="black" height="630" rx="30" width="942" x="2879" y="30"/>
+</mask>
+<image height="2160" href="foreground.jpg" mask="url(#hole-mask)" width="3840" x="0" y="0"/>
+<rect fill="none" height="1524" rx="30" stroke="#889" stroke-width="5px" width="2819" x="30" y="30"/>
+<rect fill="none" height="459" rx="30" stroke="#889" stroke-width="5px" width="2814" x="30" y="1584"/>
+<rect fill="none" height="762" rx="30" stroke="#889" stroke-width="5px" width="942" x="2879" y="792"/>
+<rect fill="none" height="412" rx="30" stroke="#889" stroke-width="5px" width="934" x="2879" y="1584"/>
+<rect fill="none" height="630" rx="30" stroke="#889" stroke-width="5px" width="942" x="2879" y="30"/>
+</svg>

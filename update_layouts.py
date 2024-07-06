@@ -3,7 +3,7 @@ from os.path import getmtime, join, isfile
 from yaml import load, SafeLoader
 
 config_path = join(
-    "D:", "obs-layout-automator", "config.yaml"
+    "Users", "alan", "workshop", "obs-layout-automator"
 )
 
 global update_time
@@ -152,20 +152,19 @@ def update_layouts():
                 item_source = obs.obs_sceneitem_get_source(item)
                 sourceitem_name = obs.obs_source_get_name(item_source)
                 print(sourceitem_name)
-
-    #             if sourceitem_name in config['scenes'][scene_name]:
-    #                 si = SceneItem(scene_source, item)
-    #                 value = config['scenes'][scene_name][sourceitem_name]
-    #                 si.update(
-    #                         rotation = value['rotation'],
-    #                         width = value['width'],
-    #                         crop_left = value['crop_left'],
-    #                         crop_right = value['crop_right'],
-    #                         crop_top = value['crop_top'],
-    #                         crop_bottom = value['crop_bottom'],
-    #                         position_x = value['position_x'],
-    #                         position_y = value['position_y'],
-    #                     )
+                if sourceitem_name in config['scenes'][scene_name]:
+                    si = SceneItem(scene_source, item)
+                    value = config['scenes'][scene_name][sourceitem_name]
+                    si.update(
+                            rotation = value['rotation'],
+                            width = value['width'],
+                            crop_left = value['crop_left'],
+                            crop_right = value['crop_right'],
+                            crop_top = value['crop_top'],
+                            crop_bottom = value['crop_bottom'],
+                            position_x = value['position_x'],
+                            position_y = value['position_y'],
+                        )
     
 
      # This is for the original format of the file when you had
@@ -242,6 +241,5 @@ The path to the config file is currently hard
 coded. Update the source to point it where
 you need
 """
-
 
 

@@ -1,0 +1,47 @@
+scenes:
+  Main:
+    InfoCharlie:
+      position_y: 1628
+      crop_right: 0
+      rotation: 90
+      crop_top: 3036
+      crop_left: 0
+      position_x: 16
+      crop_bottom: 104
+      width: 2900
+    InfoBravo:
+      width: 896
+      crop_bottom: 3334
+      crop_right: 800
+      position_x: 2932
+      position_y: 1628
+      rotation: 90
+      crop_top: 84
+      crop_left: 800
+    MainWindow:
+      crop_bottom: 2862
+      position_x: 30
+      position_y: 30
+      width: 2900
+      crop_top: 188
+      crop_right: 0
+      crop_left: 0
+      rotation: 90
+    FaceCam:
+      position_y: 28
+      crop_top: 0
+      crop_right: 0
+      crop_bottom: 0
+      crop_left: 0
+      width: 896
+      position_x: 2932
+      rotation: 0
+    InfoAlfa:
+      position_y: 590
+      rotation: 90
+      position_x: 2932
+      crop_bottom: 322
+      crop_left: 1286
+      width: 896
+      crop_top: 2672
+      crop_right: 1286
